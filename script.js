@@ -35,10 +35,14 @@ const keys = [];
 
 
 
+// This loop iterates over each element (title) of the titles array. 
+// For each title, it converts it to lowercase and pushes it into the keys array. 
 titles.forEach((title) =>{
     const key = title.toLowerCase();
     keys.push(key);
 });
+
+
 
 table.forEach(row => {
     const person = {};
@@ -48,34 +52,45 @@ table.forEach(row => {
     people.push(person);
 });
 
+// This line removes the last element from the people array
 people.pop();
 
+// These lines insert a new object p into the people array at index 1. 
 const p = { id: "48", name: "Barry", occupation: "Runner", age: "25" };
 
 people.splice(1, 0, p);
 
+// These lines insert a new object p into the people array at index 1. 
 const lastPerson = { id: "7", name: "Bilbo", occupation: "None", age: "111" };
 
 people.push(lastPerson);
 console.log(people);
 
+// These lines calculate the sum of ages from all the objects in the people array.
 let sum = 0;
-
 people.forEach(person =>{
     sum += parseInt(person.age);
 });
 
+
+// This calculates the average age by dividing the sum of ages (sum)
+//  by the number of people in the people array
 const averageAge = sum/people.length;
 console.log(sum);
 console.log(averageAge);
 
+
+// calculates the sum of ages using reduce.
 const ages = people.reduce((acc, person) =>{
     return acc += parseInt(person.age);
 },0);
 
+// This line extracts the keys of the first object in the people array
 const row1 = Object.keys(people[0]);
 console.log(row1);
 
+// joined together with commas to form a CSV header line. 
+// Then, it appends \\n to indicate a newline character in the CSV format
 let convertToCSV = row1.join(',').concat(`\\n`);
 
 people.forEach((person) =>{
